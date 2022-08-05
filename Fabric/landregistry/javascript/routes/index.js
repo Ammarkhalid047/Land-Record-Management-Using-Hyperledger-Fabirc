@@ -1,17 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var enrollAdmin = require('./call_functions/enrollAdmin');
-// var registerUserManually = require('./call_functions/registerUser1');
 var registerUser = require('./call_functions/350/registerUser');
-// var query = require('./call_functions/query');
-//var getHistory = require('./call_functions/getHistory');
-// var dlt = require('./call_functions/delete');
-// var invoke= require('./call_functions/invoke');
 var createUser= require('./call_functions/350/createUser');
 var checkNid= require('./call_functions/350/checkNid');
 var queryUser = require('./call_functions/350/queryUser');
 var editUserInfo= require('./call_functions/350/editUserInfo');
 var editUserDp = require('./call_functions/350/editUserDp');
+var queryRequest = require('./call_functions/350/queryRequest');
+var UploadChallan = require('./call_functions/350/UploadChallan');
+const PDFDocument = require('pdfkit');
+const doc = new PDFDocument;
+const crypto = require("crypto");
+const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
+	// The standard secure default length for RSA keys is 2048 bits
+	modulusLength: 2048,
+  publicKeyEncoding: { type: 'spki', format: 'der' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'der' },
+})
 
 //multer related to image uploadling
 const multer = require('multer');
@@ -58,7 +64,7 @@ router.get('/', function(req, res, next) {
   if(req.session.NID) res.redirect('/user/profile');
   else{
   enrollAdmin();
-  var obj = {success: req.session.success, error: req.session.error, title: '350 Login'};
+  var obj = {success: req.session.success, error: req.session.error, title: 'Patwarkhana Login'};
   //var obj = { title: '350 Login' , Array:['First Element',2,3] , check: req.session.flag , obj1:{t:1} };
   req.session.success = false;
   req.session.error = false;
@@ -69,11 +75,16 @@ router.get('/', function(req, res, next) {
 //login system
 router.post('/login',async function(req, res, next) {
   var result = await queryUser(req.body.NID);
-  
+  var obj = JSON.parse(result);
   if(result == ""){
     req.session.error = true;
     res.redirect('/user');
-  }else{
+  }
+  else if(obj.Verified == "No"){
+    req.session.error = true;
+    res.redirect('/user');
+  }
+  else{
       var obj = JSON.parse(result);
       if(obj.Password == req.body.password){
         req.session.USERNAME = obj.Name;
@@ -121,7 +132,7 @@ router.post('/updateInfo', async function(req, res, next) {
   else{
     req.session.success = true;
     req.session.USERNAME = req.body.username;
-    await editUserInfo(req.body.username, req.body.password ,req.body.email, req.session.NID);
+    await editUserInfo(req.session.NID, req.body.username, req.body.password ,req.body.email);
     //res.send(path);
     res.redirect('/user/profile');
   }
@@ -179,12 +190,21 @@ router.post('/register',upload.single('profileimage') , async function(req, res,
     if(req.file)
     var path = req.file.path.substring(12);
     await registerUser(req.body.NID);
-    await createUser(req.body.username,req.body.password,req.body.email,path,req.body.NID);
+    await createUser(req.body.username,req.body.password,req.body.email,path,req.body.NID,req.body.mobile);
     //res.send(path);
     res.redirect('/user');
   }
 });
-
+router.post('/challanUpload/:key',upload.single('challanImage') , async function(req, res, next) {
+  if(!req.session.NID)res.redirect('/user');
+  var result = await queryRequest(req.params.key , req.session.NID);
+  var obj;
+  obj = JSON.parse(result);
+  if(req.file)
+  var path = req.file.path.substring(12);
+  await UploadChallan(req.session.NID, req.params.key, path);
+  res.redirect('/request/myRequests');
+});
 
 router.get('/searchPage', async function(req, res, next) {
   if(!req.session.NID)res.redirect('/user');
@@ -212,7 +232,16 @@ router.post('/searchUser',async function(req, res, next) {
     }
 });
 
-
+router.get('/Loan', async function(req, res, next) {
+  if(!req.session.NID)res.redirect('/user');
+   //notification fetching
+  var result = await queryUser(req.session.NID);
+  var obj = JSON.parse(result);
+  var notifications = {N:obj.Notification , S: obj.SentRequest , R: obj.ReceivedRequest};
+  //
+  res.render('Loan' , {title:  "Loan Management", NID: req.session.NID , USERNAME: req.session.USERNAME, error: req.session.error,notifications:notifications});
+  req.session.error = false;
+});
 
 
 

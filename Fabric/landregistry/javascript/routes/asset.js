@@ -147,7 +147,7 @@ router.get('/Advertise/:key', async function(req, res, next) {
   obj = JSON.parse(result);
 
   //Authentication!
-  if(req.session.NID == null || req.session.NID != obj.OwnerNID)res.redirect('/user/logout');
+  if(req.session.NID == null || req.session.NID != obj.OwnerCNIC)res.redirect('/user/logout');
   else{
   
   req.session.success = true;
@@ -208,5 +208,27 @@ router.post('/searchAsset',async function(req, res, next) {
     notifications:notifications, obj1: obj1 , result: history});
   }
 });
+
+router.get('/Loan', async function(req, res, next) {
+  if(req.session.NID == null)res.redirect('/user');
+  else{
+
+  var result = await queryMyAsset(req.session.NID);
+  var obj;
+  if(result != ""){
+    obj = JSON.parse(result);
+  }
+  //notification fetching
+  var r = await queryUser(req.session.NID);
+  var obj1 = JSON.parse(r);
+  var notifications = {N:obj1.Notification , S: obj1.SentRequest , R: obj1.ReceivedRequest};
+  //
+  res.render('Loan' , {title: "Loan Management" , NID: req.session.NID , USERNAME: req.session.USERNAME , obj: obj, result: result, success: req.session.success
+,notifications:notifications});
+  req.session.success = false;
+}
+});
+
+
 
 module.exports = router;

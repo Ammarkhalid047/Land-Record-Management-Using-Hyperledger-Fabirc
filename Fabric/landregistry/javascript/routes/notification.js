@@ -21,6 +21,39 @@ router.get('/',async function(req, res, next) {
     res.render('Notifications' , {title: "Notifications" , NID: req.session.NID , USERNAME: req.session.USERNAME , obj: obj, result: result,notifications:notifications});
   }
   });
+  router.get('/ViewFard',async function(req, res, next) {
+    if(req.session.NID == null)res.redirect('/user');
+    else{var result = await queryAllNotification(req.session.NID);
+    var obj;
+    if(result != ""){
+      obj = JSON.parse(result);
+    }
+    //notification fetching
+    var r = await queryUser(req.session.NID);
+    var obj1 = JSON.parse(r);
+    var notifications = {N:obj1.Notification , S: obj1.SentRequest , R: obj1.ReceivedRequest};
+    //
+    await changeUserNR(req.session.NID,"ZeroN");
+    res.render('ViewFard' , {title: "View Fard" , NID: req.session.NID , USERNAME: req.session.USERNAME , obj: obj, result: result,notifications:notifications});
+  }
+  });
+   
+  router.get('/LoanNotification',async function(req, res, next) {
+    if(req.session.NID == null)res.redirect('/user');
+    else{var result = await queryAllNotification(req.session.NID);
+    var obj;
+    if(result != ""){
+      obj = JSON.parse(result);
+    }
+    //notification fetching
+    var r = await queryUser(req.session.NID);
+    var obj1 = JSON.parse(r);
+    var notifications = {N:obj1.Notification , S: obj1.SentRequest , R: obj1.ReceivedRequest};
+    //
+    await changeUserNR(req.session.NID,"ZeroN");
+    res.render('LoanNotification' , {title: "Notifications" , NID: req.session.NID , USERNAME: req.session.USERNAME , obj: obj, result: result,notifications:notifications});
+  }
+  });
 
 
 module.exports = router;
