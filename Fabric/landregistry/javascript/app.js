@@ -5,16 +5,19 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // var hbs = require('express-handlebars');
 var exphbs  = require('express-handlebars');
+const PDFDocument = require('pdfkit');
 
 //we have to install this specific validator version using this command -> npm i express-validator@5.3.1
 var expressValidator = require('express-validator');
 var expressSession = require('express-session');
 var bodyParser     =   require("body-parser");
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/main');
 var assetRouter = require('./routes/asset');
 var requestRouter = require('./routes/request');
 var adminRouter = require('./routes/admin');
 var notificationRouter = require('./routes/notification');
+var bankRouter = require('./routes/Bank');
+var userRouter = require('./routes/index')
 
 var app = express();
 
@@ -58,11 +61,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({secret: 'max' , saveUninitialized: false , resave: false}));
 
-app.use('/user', indexRouter);
+app.use('/',indexRouter);
+app.use('/user', userRouter);
 app.use('/asset', assetRouter);
 app.use('/request', requestRouter);
 app.use('/admin', adminRouter);
 app.use('/notification', notificationRouter);
+app.use('/bank', bankRouter);
 
 //Image Url match korar jnno ei portion 
   app.use('/admin/ViewAsset', express.static('public/asset'));
@@ -71,7 +76,7 @@ app.use('/notification', notificationRouter);
   app.use('/user', express.static('public/user'));
   // app.use('/request', express.static('public/request'));
   app.use('/asset/ViewAsset', express.static('public/asset'));
-
+  
 //app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
