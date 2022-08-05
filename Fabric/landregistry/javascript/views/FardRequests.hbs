@@ -2,7 +2,7 @@
  {{#if_eq success "accepted"}}
     <div class="alert alert-success">
     <ul>
-        <li>OwnerShip has been Changed according to the request</li>
+        <li>Fard has been sent to the portal</li>
     </ul>
 </div>
 {{/if_eq}} 
@@ -29,7 +29,7 @@
   <tbody>
   {{#each obj}}
     {{#if_eq this.Record.OwnerAck "1"}}
-    {{#if_eq this.Record.RequestType "0"}}
+    {{#if_eq this.Record.RequestType "1"}}
     <tr>
       <td></td>
     <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/admin/ViewRequest/' this.Key}}">{{this.Key}}</a></td>

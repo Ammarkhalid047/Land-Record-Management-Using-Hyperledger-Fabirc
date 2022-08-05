@@ -1,0 +1,37 @@
+
+ {{#if_eq success "accepted"}}
+    <div class="alert alert-success">
+    <ul>
+        <li>OwnerShip has been Changed according to the request</li>
+    </ul>
+</div>
+{{/if_eq}} 
+ {{#if_eq success "rejected"}}
+ <div class="alert alert-success">
+    <ul>
+        <li>Request Rejected</li>
+    </ul>
+</div>
+{{/if_eq}}
+
+{{!-- class="table table-hover row-clickable" --}}
+<div class="row">
+  {{#each obj}}
+    {{#if_eq this.Record.RequestType "3"}}
+    {{#if_eq this.Record.RegistrarAck "1"}}
+    <div class="col-md-4 col-sm-4 col-lg-4">
+    <div class="card">
+    <div class="card-body">
+    <h5 class="card-title"><b>Code/key</b></h5>
+    <p class="card-text">{{this.Key}}</p>
+    <h5 class="card-title"><b>OwnerCNIC</b></h5>
+    <p class="card-text">{{this.Record.OwnerCNIC}}</p>
+    <h5 class="card-title"><b>Request Time</b></h5>
+    <p class="card-text">{{this.Record.Time}}</p>
+    <a href="{{joinPath '/bank/ViewChallanRequest/' this.Key}}" class="btn btn-primary">View Uploaded Challan</a>
+  </div>
+  {{/if_eq}}
+    {{/if_eq}}
+  {{/each}}
+</div>
+{{!-- {{result}} --}}

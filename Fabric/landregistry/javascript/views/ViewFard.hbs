@@ -1,0 +1,24 @@
+ <table border="1" class="content-table table-hover" style="width:100%">
+  <thead>
+  <tr>
+    <th>Index</th>
+    <th >Retrieved Fard</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each obj}}
+    {{#if_eq this.Record.NewOwnerCNIC  "1"}}
+    {{#if_eq this.Record.FardNID ../NID}}
+    <tr>
+      <td></td>
+    <td align="center">AssetCode:<b>{{this.Record.AssetCode}}</b></br>
+     <img src="{{joinPath '/asset/' this.Record.FardUrl}}" style="width: 40%;"> </td>
+     
+    </tr>
+    {{/if_eq}}
+{{/if_eq}}
+  {{/each}}
+  </tbody>
+</table> 
+
+{{!-- {{result}} --}}

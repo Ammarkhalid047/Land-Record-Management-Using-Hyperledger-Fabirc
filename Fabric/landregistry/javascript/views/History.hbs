@@ -1,12 +1,12 @@
 <h1>History:</h1>
-<div class="vertical-menu">
-<table border="1" class="table table-hover row-clickable" style="width:100%">
+<div class="vertical-menu data-tables">
+<table border="0" class="table row-clickable" style="width:100%">
   
   {{#each obj1}}
   <tr>
     <td  align="center">TransactionId: {{this.TxId}}<br/>TransactionTime: {{this.Timestamp}}<br/>
     {{#if_eq this.IsDelete "false"}}
-    AssetName: {{this.Value.AssetName}}<br/>OwnerNID: <b>{{this.Value.OwnerNID}}</b><br/>OwnerName: {{this.Value.OwnerName}}<br/>
+    AssetName: {{this.Value.AssetName}}<br/>OwnerCNIC: <b>{{this.Value.OwnerCNIC}}</b><br/>OwnerName: {{this.Value.OwnerName}}<br/>
     Advertised: {{this.Value.Advertised}}
     </td>
     {{else}}
@@ -22,38 +22,34 @@
 
 <h1>Current Status:</h1>
 {{#if obj}}
-
-    <table   style="width:100%;border-spacing:1em;border-collapse:separate;border: 1px solid black;">
+<div class="data-tables">
+    <table style="width: 100%;">
 
   <tr>
     <td align="center">Code/Key :</td>
     <td align="center">{{key}}</td>
   </tr>
-  <tr>
-    <td align="center">Location :</td>
-    <td align="center"><img src="{{obj.LocationImage}}" class="img-thumbnail"  style="height:300px; width:350px;border: 1px solid grey;"alt="templatemo easy profile"></td>
-  </tr>
 
-  <tr>
-    <td align="center">Division :</td>
-    <td align="center">{{obj.Division}}</td>
-  </tr>
   <tr>
     <td align="center">District :</td>
     <td align="center">{{obj.District}}</td>
   </tr>
+  <tr>
+    <td align="center">Tehsil :</td>
+    <td align="center">{{obj.Tehsil}}</td>
+  </tr>
   
   <tr>
-    <td align="center">MaujaNo_JL :</td>
-    <td align="center">{{obj.MaujaNo_JL}}</td>
+    <td align="center">Khata Number :</td>
+    <td align="center">{{obj.Khata_No}}</td>
   </tr>
   <tr>
-    <td align="center">Khatian No :</td>
-    <td align="center">{{obj.KhatianNo}}</td>
+    <td align="center">Khasra Number :</td>
+    <td align="center">{{obj.Khasra_No}}</td>
   </tr>
   <tr>
-    <td align="center">Plot No :</td>
-    <td align="center">{{obj.PlotNo}}</td>
+    <td align="center">Family Number :</td>
+    <td align="center">{{obj.Family_No}}</td>
   </tr>
 
   <tr>
@@ -73,10 +69,11 @@
     <td align="center">{{obj.OwnerName}}</td>
   </tr>
   <tr>
-    <td align="center">OwnerNID :</td>
-    <td align="center">{{obj.OwnerNID}}</td>
+    <td align="center">OwnerCNIC :</td>
+    <td align="center">{{obj.OwnerCNIC}}</td>
   </tr>
-</table> 
+</table>
+</div> 
 {{else}}
     <p>Asset has been deleted .</p>
 {{/if}}

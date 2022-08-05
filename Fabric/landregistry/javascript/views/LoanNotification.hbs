@@ -1,0 +1,36 @@
+
+ <table border="1" class="content-table table-hover" style="width:100%">
+  <thead>
+  <tr>
+    <th>Index</th>
+    <th >Notifications</th>
+    <th>File</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each obj}}
+    {{#if_eq this.Record.Name "LoanNotification"}}
+    {{#if_eq this.Record.PreviousOwnerCNIC ../NID}}
+    {{#if_eq this.Record.Result "Accepted"}}
+    <tr>
+      <td></td>
+    <td align="center">Your Loan Application Against AssetCode:<b>{{this.Record.AssetCode}}</b><br/>has been Approved<br/>
+    <td align="center"><a href="{{joinPath '/request/generateLoanPDF/' this.Record.AssetCode}}"
+    ><button class="custom1" style="color: azure;">Download Document</button></a></td>
+    </td>
+    </tr>
+    {{/if_eq}}
+    {{#if_eq this.Record.Result "Rejected"}}
+    <tr>
+      <td></td>
+    <td align="center">We are really Sorry! Your Loan Application Against AssetCode:<b>{{this.Record.AssetCode}}</b><br/>has been Declined<br/>
+    Kindly Apply After Sometime</td>
+    </tr>
+    {{/if_eq}}
+    {{/if_eq}}
+    {{/if_eq}}
+  {{/each}}
+  </tbody>
+</table> 
+
+{{!-- {{result}} --}}

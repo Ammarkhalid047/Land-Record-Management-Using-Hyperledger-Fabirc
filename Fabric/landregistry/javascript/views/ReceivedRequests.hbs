@@ -2,7 +2,7 @@
  {{#if_eq success "accepted"}}
     <div class="alert alert-success">
     <ul>
-        <li>Request Accepted and sent for Inspector's verification</li>
+        <li>Request Accepted and sent for Registrar's verification</li>
     </ul>
 </div>
 {{/if_eq}} 
@@ -20,22 +20,34 @@
     <th>Index</th>
     <th>Request Code</th>
     <th>AssetName</th>
-    <th>RequestedBy(NID)</th>
+    <th>RequestedBy(CNIC)</th>
     <th>OwnerAck</th>
     <th>Time</th>
   </tr>
   </thead>
   <tbody>
   {{#each obj}}
-    {{#if_eq this.Record.OwnerNID ../NID}}
+    {{#if_eq this.Record.OwnerCNIC ../NID}}
+    {{#if_eq this.Record.RequestType 1}}
     <tr>
       <td></td>
-    <td align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Key}}</a></td>
-    <td align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.AssetName}}</a></td>
-    <td align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.RequestedByNID}}</a></td>
-    <td align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.OwnerAck}}</a></td>
-    <td align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.Time}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Key}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.AssetName}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.RequestedByNID}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.OwnerAck}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.Time}}</a></td>
     </tr>
+    {{/if_eq}}
+        {{#if_eq this.Record.RequestType 0}}
+    <tr>
+      <td></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Key}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.AssetName}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.RequestedByNID}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.OwnerAck}}</a></td>
+    <td align="center"><a style="text-decoration:none;color:white;" href="{{joinPath '/request/ViewRequest/' this.Key}}">{{this.Record.Time}}</a></td>
+    </tr>
+    {{/if_eq}}
     {{/if_eq}}
   {{/each}}
 </table> 

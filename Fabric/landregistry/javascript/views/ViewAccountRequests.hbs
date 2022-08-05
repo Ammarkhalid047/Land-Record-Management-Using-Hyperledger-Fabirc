@@ -1,0 +1,33 @@
+ <table   style="width:100%;border-spacing:2em;border-collapse:separate;border: 1px solid black;">
+
+  <tr>
+    <td align="center">CNIC :</td>
+    <td style="color: white;" align="center">{{key}}</td>
+  </tr>
+  <tr>
+    <td align="center">Email :</td>
+    <td style="color: white;" align="center">{{obj.Email}}</td>
+  </tr>
+  <tr>
+    <td align="center">Contact :</td>
+    <td style="color: white;" align="center">{{obj.Mobile}}</td>
+  </tr>
+  <tr>
+    <td align="center">image :</td>
+    <td style="color: white;" align="center"><img src="../../user/{{obj.ImageUrl}}" style="width:300px;"></td>
+  </tr>
+    {{#if Admin}}
+              <tr>
+              <td align="center"></td>
+              <td align="center"><a href="{{joinPath '/admin/acceptAccountRequest/' key}}" onclick="return confirm('Are you sure you want to accept this?');"
+              ><button class="custom1" style="color: azure;">Accept</button></a></td>
+              </tr>
+              <tr>
+              <td align="center"></td>
+              <td align="center"><a href="{{joinPath '/admin/rejectAccountRequest/' key}}" onclick="return confirm('Are you sure you want to reject this?');"
+              ><button class="custom2" style="color: azure;">Reject</button></a></td>
+             </tr>
+    {{/if}}
+</table> 
+
+{{!-- {{result}} --}}

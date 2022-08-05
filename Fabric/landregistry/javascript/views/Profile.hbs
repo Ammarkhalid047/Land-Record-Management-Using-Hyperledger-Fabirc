@@ -7,54 +7,70 @@
 </div>
 
 <!-- header section -->
+	<div class="row gutters-sm" style="margin-top:50px;">
+            <div class="col-md-4 mb-3">
+              <div class="card" >
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="{{obj.ImageUrl}}" alt="Admin" class="rounded-circle" width="260">
+                    <div class="mt-3">
+                      <h4>{{obj.Name}}</h4>
+					  {{#if Check}}
+                      <a class="btn btn-primary" href="/user/editDp" style="width: 100px;">Edit</a>
+					  {{/if}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+			  </div>
+			  <div class="col-md-8">
+				   <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Full Name</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{obj.Name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Email</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{obj.Email}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Phone</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{obj.Mobile}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">CNIC</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{NID}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                     {{#if Check}}
+                      <a class="btn btn-primary" href="/user/editInfo" style="width: 100px;">Edit</a>
+					  {{/if}}
+                    </div>
+                  </div>
+                </div>
+			  </div>
+			  </div>
+			  </div>
 
-	<div class="container">
-		{{#if success}}
-   		<div class="alert alert-success">
-    	<ul>
-        	<li>Profile Updated</li>
-    	</ul>
-    	</div>
-  		{{/if}}
-
-		<div >
-		<h1 class="tm-title bold shadow" style="float: left; margin-top: 20px;">{{obj.Name}}</h1>
-		</div>
-				
-		<div class="row">
-			
-			<div class="col-md-12">
-				{{#if Check}}
-				<a class="btn btn-info" href="/user/editDp" style="float: right; margin-top: 20px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-				{{/if}}
-				<hr>
-				<img src="{{obj.ImageUrl}}" class="img-responsive img-circle tm-border" style="height:300px; width:350px;border: 1px solid grey;"alt="templatemo easy profile">
-				<hr>
-				<h1 class="tm-title bold shadow"></h1>
-			</div>
-		</div>
-	</div>
-<!-- contact and experience -->
-<section class="container" style="margin-bottom:100px">
-	{{#if Check}}
-	<a class="btn btn-info" href="/user/editInfo" style="float: right; margin-top: 20px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-	{{/if}}
-	<div class="row">
-		<div class="col-md-6">
-			<div class="contact">
-				<h2>Contact</h2>
-					<p><i class="fa fa-envelope">Email: {{obj.Email}}</i> </p>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="experience">
-					<h2>Details</h2>
-					<div class="experience-content">
-				
-						<h4 class="experience-title accent">NID No: {{NID}}</h4>
-
-					</div>
-			</div>
-		</div>
-	</div>
-</section>

@@ -12,8 +12,80 @@
     </ul>
 </div>
 {{/if}} 
+ {{#if AdminPage}}
+ <form action="/admin/upload" method="post" enctype="multipart/form-data">
+ <center>
+  <div class="row login-signup">
+      <div class="col-md-12">
+          <h1>
+              UPLOAD ASSET
+          </h1>
+      </div>
+      <div class="col-md-6">
+    <label for="District"><b>District</b></label>
+    <input type="text" placeholder="Sialkot" name="District" required>
 
- <form action="/asset/upload" method="post" enctype="multipart/form-data">
+    <label for="District"><b>Tehsil</b></label>
+    <input type="text" placeholder="Sialkot" name="Tehsil" required>
+
+    <label for="KhataNumber"><b>Khata Number</b></label>
+    <input type="text" placeholder="110" name="Khata_No" required>
+
+    <label for="KhasraNumber"><b>Khasra Number</b></label>
+    <input type="text" placeholder="1" name="Khasra_No" required>
+
+    <label for="FamilyNumber"><b>Family Number</b></label>
+    <input type="text" placeholder="1" name="Family_No" required>
+
+    <label for="Owner Id"><b>Owner Id / CNIC</b></label>
+    <input type="text" placeholder="3460389584421" name="CNIC" required>
+
+    <label for="Owner Name"><b>Owner Name</b></label>
+    <input type="text" placeholder="Ammar khalid" name="Owner" required>
+
+    <label for="Father Name"><b>Father Name</b></label>
+    <input type="text" placeholder="Khalid Mehmood" name="Father_Name" required>
+
+</div>
+<div class="col-md-6">
+    <label for="Father Name"><b>Latitude</b></label>
+    <input type="text" placeholder="236541" name="Latitude" required>
+
+    <label for="Father Name"><b>Longitude</b></label>
+    <input type="text" placeholder="Longitude" name="Longitude" required>
+
+    <label for="Stay"><b>Stay/Not</b></label>
+    <select class="form-control" name="Stay" id="Stay">
+    <option value="true">True</option>
+    <option value="false">False</option>
+    </select>
+
+        <label for="Stay"><b>Mortgaged/Not</b></label>
+    <select class="form-control" name="Mortgage" id="Mortgage">
+    <option value="true">True</option>
+    <option value="false">False</option>
+    </select>
+
+        <label for="Stay"><b>Leased/Not</b></label>
+    <select class="form-control" name="Lease" id="Lease">
+    <option value="true">True</option>
+    <option value="false">False</option>
+    </select>
+
+    <label for="assetname"><b>AssetName</b></label>
+    <input type="text" placeholder="Enter Name" name="assetname" required>
+
+    <label for="assetLocation"><b>Upload Fard Image</b></label>
+    <input class="file-path validate" id="fileInput" type="file" name="assetLocation" required>
+
+
+    <button type="submit" class="custom1">Upload</button>
+    </div>
+  </div>
+  </center>
+</form> 
+ {{else}}
+  <form action="/asset/upload" method="post" enctype="multipart/form-data">
   <div class="container">
     <label for="Division"><b>Division</b></label>
     <input type="text" placeholder="Sylhet" name="Division" required>
@@ -40,3 +112,4 @@
     <button type="submit" class="custom1">Upload</button>
   </div>
 </form> 
+{{/if}}

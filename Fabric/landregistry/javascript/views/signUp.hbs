@@ -15,21 +15,26 @@
 
  
  <form action="/user/register" method="post" enctype="multipart/form-data">
-  <div class="imgcontainer">
-    <img src="/images/signUp.png" alt="Avatar" class="signUp" height="100" width="150">
+  <center>
+<div class="row login-signup" >
+  <div class="col-md-12">
+    <h1>SIGNUP</h1>
   </div>
-
-  <div class="container">
+  <div class="col-md-6">
     <label for="username"><b>Username</b></label>
     <input type="text" placeholder="Enter username" name="username" required>
 
-    <label for="NID"><b>NID</b></label>
-    <input type="text" placeholder="Enter NID" name="NID" required>
+    <label for="CNIC"><b>CNIC</b></label> 
+    <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="13" minlength="12"  placeholder="Enter CNIC" min="15" max="16" name="NID" required>
 
      <label for="email"><b>Email</b></label>
     <input type="email" placeholder="y@y.com" name="email" required>
+    
+    <label for="number"><b>Mobile</b></label>
+    <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" minlength="10" placeholder="03098202014" name="mobile" required>
 
-
+</div>
+<div class="col-md-6">
     <label for="profileimage"><b>Upload Image</b></label>
     <input class="file-path validate" id="fileInput" type="file" name="profileimage" required>
 
@@ -41,9 +46,23 @@
 
 
     <button type="submit" class="custom1">Sign Up</button>
-  </div>
 
-  <div class="container" >
     <span class="psw">Already have an  account? <a href="/user">Log In</a></span>
+
+    </div>
+    
   </div>
+  </center>
+</div>
+
 </form> 
+<script>
+    function onlyNumberKey(evt) {
+          
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>

@@ -1,34 +1,35 @@
  {{#if success}}
     <div class="alert alert-success">
     <ul>
-        <li>Asset Successfully Deleted</li>
+        <li>Successfully Applied for Deed Registration</li>
     </ul>
 </div>
-{{/if}} 
- 
- <table border="1" class="content-table table-hover" style="width:100%">
- <thead>
-  <tr>
-    <th>Index</th>
-    <th>Code/Key</th>
-    <th>AssetName</th>
-    <th>Upload-Time</th>
-    <th>Is-Advertised</th>
-  </tr>
-  </thead>
-  <tbody>
-  {{# each obj}}
-  <tr>
-    <td></td>
-    <td  align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Key}}</a></td>
-    {{!-- <td align="center"><a style="text-decoration:none;color:black;" href="#"><img src="{{this.Record.LocationImage}}" class="img-thumbnail" 
-                                                              style="height:300px; width:350px;"alt="templatemo easy profile"></a></td> --}}
-    <td  align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Record.AssetName}}</a></td>
-    <td  align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Record.UploadTime}}</a></td>
-    <td  align="center"><a style="text-decoration:none;color:black;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Record.Advertised}}</a></td>
-  </tr>
-  {{/each}}
-  </tbody>
-</table> 
 
+{{/if}} 
+
+ <div class="row">
+  {{#each obj}}
+  <div class="col-md-4 col-sm-4 col-lg-4">
+    <div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><b>Code/key</b></h5>
+    <p class="card-text"><a style="text-decoration:none;color:#fff;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Key}}</a></p>
+    <h5 class="card-title"><b>Asset Name</b></h5>
+    <p class="card-text"><a style="text-decoration:none;color:white;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Record.AssetName}}</a></p>
+    <h5 class="card-title"><b>Advertised</b></h5>
+    <p class="card-text"><a style="text-decoration:none;color:white;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Record.Advertised}}</a></p>
+    <a href="{{joinPath '/asset/ViewAsset/' this.Key}}" class="btn btn-primary">View Details</a>
+    {{#if_eq this.Record.DeedRegistration "Unregistered"}}
+    <p style="margin-top:10px"><b>This property has been transferred to you recently please apply for deed Registration</b></p>
+    <a href="{{joinPath '/request/DeedRegistration/' this.Key}}" class="btn btn-primary">Apply for Deed Registration</a>
+    {{/if_eq}}
+    {{#if_eq this.Record.DeedRegistration "Applied"}}
+    <p style="margin-top:10px"><b>You have applied for deed Registration, Registrar will soon review your application.</b></p>
+    {{/if_eq}}
+  </div>
+</div>
+</div>
+  {{/each}}
+</div>
+</div>
 {{!-- {{result}} --}}

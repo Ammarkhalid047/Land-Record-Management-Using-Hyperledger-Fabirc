@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>{{ title }}</title>
-<link rel="stylesheet" href="/stylesheets/style.css">
  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"/>
+ <link rel="stylesheet" href="/stylesheets/style.css">
+ <link rel="stylesheet" href="/css-bootstrap/bootstrap.css">
+
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
@@ -18,73 +23,248 @@
 
 <body>
 
-  {{#if AdminPage}}
+{{#if AdminPage}}
+  {{#if Bank}}
+  <div class="row branding">
+    <h3><b>PATWARKHANA(LAND RECORD MANAGEMENT SYSTEM)</b></h3></div>
+    <h3>BANK PORTAL</h3>
+  <div class="area"></div><nav class="main-menu">
+              <ul>
+                <li>
+                    <a href="/bank/requests">
+                        <i class="fa fa-user fa-2x"></i>
+                        <span class="nav-text">
+                            Dashboard
+                        </span>
+                    </a>
+                  
+                </li>
+                <li>
+                    <a href="/bank/challan">
+                        <i class="fa fa-user fa-2x"></i>
+                        <span class="nav-text">
+                            Challan Verification
+                        </span>
+                    </a>
+                  
+                </li>
+                </ul>
+    <ul class="logout">
+                <li>
+                   <a href="/bank/logout">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+  </nav>
+  {{/if}}
     {{#if Admin}}
-    <div class="topnav">
-    <a href="/admin/requests">Home</a>
-    <a href="/admin/searchPage">Asset's Transaction History</a>
-    <a href="/admin/logout"><i class="fa fa-lock"></i>Logout</a>
-    </div>
+    <div class="row branding">
+    <img src="/images/177.png" style="height:35px; margin: 0;"></div>
+    <h3>REGISTRAR PORTAL</h3>
+    <div class="area"></div><nav class="main-menu">
+     <ul>
+
+          <li>
+                    <a href="/admin/Accountrequests">
+                        <i class="fa fa-user fa-2x"></i>
+                        <span class="nav-text">
+                            Account Approval Requests
+                        </span>
+                    </a>
+                  
+                </li>
+                <li>
+                    <a href="/admin/requests">
+                        <i class="fa fa-user fa-2x"></i>
+                        <span class="nav-text">
+                            OwnerShip Requests
+                        </span>
+                    </a>
+                  
+                </li>
+                <li>
+                    <a href="/admin/Fardrequests">
+                        <i class="fa fa-spinner fa-2x"></i>
+                        <span class="nav-text">
+                            Fard Requests
+                        </span>
+                    </a>
+                  
+                </li>
+
+                <li>
+                    <a href="/admin/DeedRegistration">
+                        <i class="fa fa-spinner fa-2x"></i>
+                        <span class="nav-text">
+                            Deed Registration
+                        </span>
+                    </a>
+                  
+                </li>
+
+                <li class="has-subnav">
+                    <a href="/admin/uploadpage">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Upload Assets
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="/admin/searchPage">
+                       <i class="fa fa-history fa-2x"></i>
+                        <span class="nav-text">
+                            Asset's Transaction History
+                        </span>
+                    </a>
+                    
+                </li>
+                </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="/admin/logout">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+</nav>
     {{/if}}
   {{else}}
+{{#if NID}}  
+<div class="row branding data-tables" style="text-align: center;">
+     <h3><b>PATWARKHANA</b>(LAND RECORD MANAGEMENT SYSTEM)</h3>
+    </div>
+    
+<div class="area"></div><nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="/user/profile">
+                        <i class="fa fa-user fa-2x"></i>
+                        <span class="nav-text">
+                            Hi, {{USERNAME}}
+                        </span>
+                    </a>
+                  
+                </li>
+                <li class="has-subnav">
+                    <a href="/asset">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            My Assets
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="/asset/ads">
+                        <i class="fa fa-bullhorn fa-2x"></i>
+                        <span class="nav-text">
+                            Advertised Assets
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="/asset/searchPage">
+                       <i class="fa fa-history fa-2x"></i>
+                        <span class="nav-text">
+                            View Asset's Traceback
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="/notification/">
+                     {{#if_eq notifications.N 0}}
+                       <i class="fa fa-bell fa-2x"></i>
+                       {{else}}
+                       <i class="fa fa-bell fa-2x" style="color: red;"></i>
+                       {{/if_eq}}
+                        <span class="nav-text">
+                            Notifications({{notifications.N}})
+                        </span>
+                    </a>
+                   
+                </li>
+                <li class="has-subnav">
+                    <a href="/notification/LoanNotification">
+                       <i class="fa fa-tasks"></i>
+                        <span class="nav-text">
+                            Loan Status({{notifications.N}})
+                        </span>
+                    </a>
+                   
+                </li>
+                 <li class="has-subnav">
+                    <a href="/notification/ViewFard/">
+                       <i class="fa fa-spinner fa-2x"></i>
+                        <span class="nav-text">
+                            FardRequests({{notifications.N}})
+                        </span>
+                    </a>
+                   
+                </li>
 
-    {{#if NID}}
-<div class="topnav">
-  <a href="/asset/ads">Ads</a> 
-  <a href="/asset/searchPage">Asset's Transaction History</a>
-  <a href="/user/searchPage">Search User</a>
-  <a href="/notification/">Notifications({{notifications.N}})</a>   
-  <a href="/request/myRequests"><i >Sent Requests({{notifications.S}})</i></a>   
-  <a href="/request/ReceivedRequests"><i >Received Requests({{notifications.R}})</i></a>              
-</div> 
-   <header id="header" > <!--header-->    
-        <div class="header-middle"><!--header-middle-->
-            <div class="container">
-                <div class="row">
-                        <div class="shop-menu pull-right">
-                            <ul class="nav navbar-nav">
-                            
-                                <li class="dropdown">
-                                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="halflings-icon white user"></i> Hi, {{USERNAME}}
-                                <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                <li class="dropdown-menu-title">
-                                    <span>Account Settings</span>
-                                    <i class="fa fa-gear"></i>
-                                </li>
-                                <li><a href="/user/profile"><i >My Profile</i></a></li>
-                              
-                               <li><a href="/asset"><i >My Assets</i></a></li>
-                               <li><a href="/notification/"><i >Notifications({{notifications.N}})</i></a></li>
+                    <li class="has-subnav">
+                    <a href="/asset/Loan">
+                       <i class="fa fa-university"></i>
+                        <span class="nav-text">
+                            Request Loan 
+                        </span>
+                    </a>
+                   
+                </li>
+                <li>
+                    <a href="/request/myRequests">
+                    {{#if_eq notifications.S 0}}
+                        <i class="fa fa-send fa-2x"></i>
+                        {{else}}
+                        <i class="fa fa-send fa-2x" style="color: red;"></i>
+                        {{/if_eq}}
+                        <span class="nav-text">
+                            Sent Requests({{notifications.S}})
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/request/ReceivedRequests">
+                      {{#if_eq notifications.R 0}} 
+                        <i class="fa fa-mail-reply fa-2x"></i>
+                        {{else}}
+                        <i class="fa fa-mail-reply fa-2x" style="color: red;"></i>
+                        {{/if_eq}}
+                        <span class="nav-text">
+                           Received Requests({{notifications.R}})
+                        </span>
+                    </a>
+                </li>
+            </ul>
 
-                                <li><a href="/request/myRequests"><i>Sent Requests({{notifications.S}})</i></a></li>      
-
-                                <li><a href="/request/ReceivedRequests"><i >Received Requests({{notifications.R}})</i></a></li>      
-      
-
-                              <li><a href="/asset/uploadpage"><i >Upload an Asset</i></a></li>
-                               <li><a href="/user/logout"><i >Logout</i></a></li>
-
-                                </ul>
-                                </li>
-                            </ul>
-                    </div>
-                </div>
-            </div>
-        </div><!--/header-middle-->
-    </header><!--/header--> 
-    {{else}}
-      <div class="topnav">
-    <a href="/user"><i class="fa fa-lock"></i> Login</a>
-    <a href="/user/signUp"><i class="fa fa-lock"></i> Sign Up</a>                          
-    </div> 
+            <ul class="logout">
+                <li>
+                   <a href="/user/logout">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+            {{else}}
+     
     {{/if}}
 
   {{/if}}
-
-
 
   {{{ body }}}
 

@@ -1,0 +1,27 @@
+
+ {{#if success}}
+    <div class="alert alert-success">
+    <ul>
+        <li>Loan Request Successfully Submitted</li>
+    </ul>
+</div>
+
+{{/if}} 
+<div class="row">
+  {{# each obj}}
+  <div class="col-md-4 col-sm-4 col-lg-4">
+    <div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><b>Code/key</b></h5>
+    <p class="card-text"><a style="text-decoration:none;color:#fff;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Key}}</a></p>
+    <h5 class="card-title"><b>Advertised</b></h5>
+    <p class="card-text"><a style="text-decoration:none;color:white;" href="{{joinPath '/asset/ViewAsset/' this.Key}}">{{this.Record.Advertised}}</a></p>
+    {{#if_eq this.Record.LoanStatus "No"}}
+    <a href="{{joinPath '/request/createLoanRequest/' this.Key}}" class="btn btn-primary">Apply For Loan</a>
+    {{/if_eq}}
+  </div>
+</div>
+</div>
+  {{/each}}
+</div>
+{{!-- {{result}} --}}

@@ -1,0 +1,23 @@
+ <table border="1" class="content-table table-hover" style="width:100%">
+  <thead>
+  <tr>
+    <th>Index</th>
+    <th >Uploaded Challan</th>
+    <th>Action</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+    <td align="center">AssetCode:<b>{{obj.AssetCode}}</b></br>
+     <img src="{{joinPath '/user/' obj.Challan}}" style="width: 40%;"> </td>
+    <td align="center"><a href="{{joinPath '/bank/acceptRequest/' key}}" onclick="return confirm('Are you sure you want to accept this?');">
+    <button class="custom1" style="color: azure;">Accept</button></a></td>
+    <td align="center"><a href="{{joinPath '/bank/rejectRequest/' key}}" onclick="return confirm('Are you sure you want to reject this?');"
+              ><button class="custom2" style="color: azure;">Reject</button></a></td>
+    </tr>
+  </tbody>
+</table> 
+
+{{!-- {{result}} --}}
