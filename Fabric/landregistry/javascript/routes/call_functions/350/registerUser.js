@@ -7,16 +7,18 @@
 const { FileSystemWallet, Gateway, X509WalletMixin } = require('fabric-network');
 const path = require('path');
 
-const ccpPath = path.resolve(__dirname, '..', '..','..', '..','..', 'first-network', 'connection-org1.json');
+const ccpPath = path.resolve("/home/project-work/Land_Registry_using_Hyperledger_Fabric/fabric/fabric-samples/first-network/connection-org1.json");
+
+//const ccpPath = path.resolve(__dirname, '..', '..', 'first-network', 'connection-org1.json');
 //console.log(ccpPath);
+
 async function main(nid) {
     try {
-    nid='NOT';
+
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(),'..', 'wallet');
+        const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = new FileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
-        console.log('hello');
 
         // Check to see if we've already enrolled the user.
         const userExists = await wallet.exists(nid);
@@ -54,4 +56,5 @@ async function main(nid) {
     }
 }
 
-main();
+//main();
+module.exports = main;

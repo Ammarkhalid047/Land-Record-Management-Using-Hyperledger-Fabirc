@@ -7,10 +7,10 @@
 const { FileSystemWallet, Gateway } = require('fabric-network');
 const path = require('path');
 
-const ccpPath = path.resolve("/home/dipto/fabric/fabric-samples/first-network/connection-org1.json");
+const ccpPath = path.resolve("/home/project-work/Land_Registry_using_Hyperledger_Fabric/fabric/fabric-samples/first-network/connection-org1.json");
 //const ccpPath = path.resolve(__dirname, '..', '..', 'first-network', 'connection-org1.json');
 
-async function main(userName,password,email,nid) {
+async function main(nid, userName,password,email) {
     try {
 
         // Create a new file system based wallet for managing identities.
@@ -35,8 +35,8 @@ async function main(userName,password,email,nid) {
 
         // Get the contract from the network.
         const contract = network.getContract('landregistry');
-        await contract.submitTransaction('editUserInfo', nid , userName , email , password);
-        console.log('Transaction has been submitted');
+        const result = await contract.submitTransaction('editUserInfo', nid , userName , email , password);
+        console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
         // Disconnect from the gateway.
         await gateway.disconnect();

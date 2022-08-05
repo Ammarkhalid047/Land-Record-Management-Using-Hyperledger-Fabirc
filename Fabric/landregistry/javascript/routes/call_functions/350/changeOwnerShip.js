@@ -7,7 +7,7 @@
 const { FileSystemWallet, Gateway } = require('fabric-network');
 const path = require('path');
 
-const ccpPath = path.resolve("/home/dipto/fabric/fabric-samples/first-network/connection-org1.json");
+const ccpPath = path.resolve("/home/project-work/Land_Registry_using_Hyperledger_Fabric/fabric/fabric-samples/first-network/connection-org1.json");
 //const ccpPath = path.resolve(__dirname, '..', '..', 'first-network', 'connection-org1.json');
 
 async function main(nid,uniqueCode,NewOwnerName,NewOwnerNID) {
@@ -35,7 +35,7 @@ async function main(nid,uniqueCode,NewOwnerName,NewOwnerNID) {
 
         // Get the contract from the network.
         const contract = network.getContract('landregistry');
-        await contract.submitTransaction('changeOwnerShip', uniqueCode, NewOwnerNID , NewOwnerName);
+        await contract.submitTransaction('changeOwnerShip', uniqueCode, NewOwnerNID , NewOwnerName,"Yes");
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.

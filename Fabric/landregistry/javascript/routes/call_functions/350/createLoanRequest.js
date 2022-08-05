@@ -29,13 +29,13 @@ async function main(OwnerNID,RequestType,OwnerName,RequestedByNID,RequestedByNam
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
         await gateway.connect(ccpPath, { wallet, identity: RequestedByNID, discovery: { enabled: true, asLocalhost: true } });
-
+       
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
 
         // Get the contract from the network.
         const contract = network.getContract('landregistry');
-        await contract.submitTransaction('createRequest', RequestedByNID+'R' , OwnerNID ,RequestType,  AssetName , RequestedByNID , AssetCode ,RequestedByName, Time,OwnerName);
+        await contract.submitTransaction('createRequest', AssetCode+'LR' , OwnerNID , RequestType, AssetName , RequestedByNID , AssetCode ,RequestedByName, Time,OwnerName);
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
